@@ -30,7 +30,7 @@
       <div class="mb-3">
         <label class="form-label fw-semibold">Current attachments</label>
         <ul class="list-group mt-2">
-          <% task.files.each do |file| %>
+          <% task.unique_files.each do |file| %>
             <li class="list-group-item">
               <% if file.image? %>
                 <%= image_tag file, class: 'img-fluid rounded mb-2', style: 'max-height: 120px; object-fit: cover;' %>

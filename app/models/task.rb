@@ -31,6 +31,10 @@ class Task < ApplicationRecord
     !completed? && due_date.present? && due_date < Time.current
   end
 
+  def unique_files
+    files.includes(:blob).uniq { |attachment| attachment.blob_id }
+  end
+
   private
 
   def files_size_within_limit

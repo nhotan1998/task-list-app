@@ -72,6 +72,12 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :description, :completed, :due_date, files: [])
+      params.require(:task).permit(:title, :description, :completed, :due_date, files: []).tap do |permitted|
+        next if permitted[:files].blank?
+
+        permitted[:files] = permitted[:files]
+          .compact_blank
+          .uniq { |file| [file.original_filename, file.size, file.content_type] }
+      end
     end
 end

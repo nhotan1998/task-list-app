@@ -30,11 +30,12 @@
       </p>
     </div>
 
-    <% if @task.files.attached? %>
+    <% unique_files = @task.unique_files %>
+    <% if unique_files.any? %>
       <div class="mb-3 task-attachments">
         <strong>Attachments:</strong>
         <div class="row g-3 mt-2">
-          <% @task.files.each do |file| %>
+          <% unique_files.each do |file| %>
             <div class="col-md-6">
               <div class="border rounded p-2 bg-light">
                 <% if file.image? %>
