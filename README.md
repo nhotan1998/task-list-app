@@ -47,13 +47,21 @@ A default seeded user is available for quick testing:
    cd task_list
    ```
 
-2. Build and start the app with Docker Compose:
+2. Create your local environment file from the sample:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Review the values in `.env` and adjust them if needed. The default Docker setup is already configured for local development.
+
+3. Build and start the app with Docker Compose:
 
    ```bash
    docker compose up --build
    ```
 
-3. Wait for the containers to start, then run database setup:
+4. Wait for the containers to start, then run database setup:
 
    ```bash
    docker compose exec web bundle exec rails db:create
@@ -61,11 +69,36 @@ A default seeded user is available for quick testing:
    docker compose exec web bundle exec rails db:seed
    ```
 
-4. Open the app in a browser:
+5. Open the app in a browser:
 
    ```text
    http://localhost:3000
    ```
+
+## Environment Variables
+
+The project uses a `.env` file for local configuration. A sample template is included in `.env.example`.
+
+Example values:
+
+```env
+RAILS_ENV=development
+DB_HOST=db
+DB_PORT=5432
+POSTGRES_DB=task_list_development
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+TASK_LIST_DATABASE_PASSWORD=password
+SECRET_KEY_BASE=replace_with_your_secure_secret
+```
+
+Copy the sample file before running the app:
+
+```bash
+cp .env.example .env
+```
+
+For local non-Docker development, change `DB_HOST` to `localhost` when needed.
 
 ## Login
 
