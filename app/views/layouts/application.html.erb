@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TaskList</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  </head>
+
+  <body>
+    <% if logged_in? %>
+      <nav class="navbar navbar-light bg-white border-bottom shadow-sm">
+        <div class="container">
+          <span class="navbar-brand mb-0 h5">TaskList</span>
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-muted">Hi, <%= current_user.name %></span>
+            <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+
+    <%= yield %>
+
+    <style>
+      .password-field {
+        position: relative;
+      }
+
+      .password-field .form-control {
+        padding-right: 2.75rem;
+      }
+
+      .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 0.75rem;
+        transform: translateY(-50%);
+        border: 0;
+        background: transparent;
+        color: #6c757d;
+        padding: 0.25rem 0.5rem;
+        z-index: 3;
+      }
+
+      .password-toggle:hover,
+      .password-toggle:focus {
+        color: #0d6efd;
+        outline: none;
+      }
+    </style>
+
+    <script>
+      function togglePassword(inputId, button) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        const icon = button.querySelector('i');
+        const isPassword = input.type === 'password';
+
+        input.type = isPassword ? 'text' : 'password';
+
+        if (icon) {
+          icon.classList.toggle('bi-eye', !isPassword);
+          icon.classList.toggle('bi-eye-slash', isPassword);
+        }
+      }
+    </script>
+  </body>
+</html>

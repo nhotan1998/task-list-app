@@ -1,0 +1,49 @@
+<div class="container mt-5" style="max-width: 420px;">
+  <div class="card shadow-sm p-4">
+    <h1 class="mb-4 text-center">Create Account</h1>
+
+    <%= form_with model: @user, local: true do |form| %>
+      <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :name, class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, class: 'form-label' %>
+        <%= form.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, class: 'form-label' %>
+        <div class="password-field">
+          <%= form.password_field :password, class: 'form-control pe-5', id: 'signup-password', autocomplete: 'new-password' %>
+          <button type="button" class="password-toggle" onclick="togglePassword('signup-password', this)" aria-label="Show or hide password">
+            <i class="bi bi-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password_confirmation, class: 'form-label' %>
+        <div class="password-field">
+          <%= form.password_field :password_confirmation, class: 'form-control pe-5', id: 'signup-password-confirmation', autocomplete: 'new-password' %>
+          <button type="button" class="password-toggle" onclick="togglePassword('signup-password-confirmation', this)" aria-label="Show or hide password confirmation">
+            <i class="bi bi-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <%= form.submit 'Create account', class: 'btn btn-primary w-100' %>
+    <% end %>
+  </div>
+</div>

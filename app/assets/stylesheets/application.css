@@ -1,0 +1,80 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  background: #f5f7fb;
+  color: #1f2937;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.card {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.form-control,
+.form-select,
+.form-check-input,
+.btn {
+  border-radius: 0.7rem;
+}
+
+.form-control,
+.form-select {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.task-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.task-form .form-control,
+.task-form .form-check-input,
+.task-form .btn {
+  border-radius: 0.7rem;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.table thead th {
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.task-attachments .border {
+  border-radius: 0.75rem;
+}

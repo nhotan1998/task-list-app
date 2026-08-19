@@ -1,0 +1,50 @@
+<div class="task-form p-3 border rounded bg-light">
+  <%= form_with(model: task, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label fw-semibold' %>
+      <%= form.text_field :title, class: 'form-control', placeholder: 'Enter task title...' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description, class: 'form-label fw-semibold' %>
+      <%= form.text_area :description, rows: 4, class: 'form-control', placeholder: 'Describe the task...' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :due_date, class: 'form-label fw-semibold' %>
+      <%= form.datetime_local_field :due_date, class: 'form-control' %>
+    </div>
+
+    <div class="form-check mb-3">
+      <%= form.check_box :completed, class: 'form-check-input' %>
+      <%= form.label :completed, class: 'form-check-label' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :files, 'Supporting files', class: 'form-label fw-semibold' %>
+      <%= form.file_field :files, multiple: true, class: 'form-control' %>
+      <div class="form-text">Maximum file size: 10MB per file.</div>
+    </div>
+
+    <% if task.persisted? && task.files.attached? %>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Current attachments</label>
+        <ul class="list-group mt-2">
+          <% task.files.each do |file| %>
+            <li class="list-group-item">
+              <% if file.image? %>
+                <%= image_tag file, class: 'img-fluid rounded mb-2', style: 'max-height: 120px; object-fit: cover;' %>
+              <% end %>
+              <div><%= link_to file.filename.to_s, rails_blob_path(file), target: '_blank', class: 'text-decoration-none' %></div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="d-flex gap-2">
+      <%= form.submit task.persisted? ? 'Update Task' : 'Create Task', class: 'btn btn-primary' %>
+      <%= link_to 'Back to list', tasks_path, class: 'btn btn-outline-secondary' %>
+    </div>
+  <% end %>
+</div>
